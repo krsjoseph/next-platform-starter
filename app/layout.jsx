@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+import {useEffect} from 'react'
 import { Footer } from '../components/footer';
 import { Header } from '../components/header';
 
@@ -10,14 +11,29 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
+    useEffect(() => {
+    const scriptText = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PXG87RF6');`;
+
+    const scriptElement = document.createElement('script');
+    scriptElement.async = true;
+    scriptElement.text = scriptText;
+    document.body.appendChild(scriptElement);
+
+    // Cleanup function to remove the script when the component unmounts
+    return () => {
+      document.body.removeChild(scriptElement);
+    };
+  }, []); // Empty array means this effect runs only once after the initial render
+
     return (
         <html lang="en" data-theme="lofi">
             <head>
-                <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                })(window,document,'script','dataLayer','GTM-PXG87RF6');</script>
+           
                 <link rel="icon" href="/favicon.svg" sizes="any" />
             </head>
             <body className="antialiased text-white bg-blue-900">
