@@ -23,6 +23,10 @@ export default function RootLayout({ children }) {
                 <link rel="icon" href="/favicon.svg" sizes="any" />
             </head>
             <body className="antialiased text-white bg-blue-900">
+                <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PXG87RF6"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
                 <div className="flex flex-col min-h-screen px-6 bg-grid-pattern sm:px-12">
                     <div className="flex flex-col w-full max-w-5xl mx-auto grow">
                         <Header />
